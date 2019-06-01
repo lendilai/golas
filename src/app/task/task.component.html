@@ -1,0 +1,10 @@
+<h1>My Goals</h1>
+<app-task-form (addGoal)="addNew($event)"></app-task-form>
+<ul>
+  <div *ngFor='let goal of goals; index as i'>
+    <li appStrike>{{goal.name}} due on {{goal.completeDate | dateCount}}</li>
+    <button (click)="toggle(i)" class="btn btn-primary">Show</button>
+    <app-task-details *ngIf="goal.showDesc" [goal]='goal' (isDone)="doneGoal($event, i)"></app-task-details>
+  </div>
+</ul>
+<p *ngIf='goals.length > 5'>You have too many goals</p>
